@@ -35,8 +35,8 @@
     Runde: {currentRound+1}/{totalRounds}<br/>
     Punkte: {$points}/{totalRounds}
   </div>
-
-	<h1>{currentState}</h1>
+  
+	<h1>Was ist die Hauptstadt von: {currentState}</h1>
   {#each possibleStates as {capitol}}
     <Button state={currentState} answer={capitol} isCorrect={capitol===currentAnswer} />
   {/each}
