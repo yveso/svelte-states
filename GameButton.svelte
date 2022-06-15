@@ -1,15 +1,17 @@
 <script>
 	import { round, points, givenAnswers } from "./stores.js";
+
 	export let answer;
 	export let state;
-	export let isCorrect;
+	export let correctAnswer;
+
 	function handleClick() {
 	  round.update(r => r + 1);
 	  $givenAnswers = [
 	    ...$givenAnswers,
-	    { state: state, answer: answer, isCorrect: isCorrect }
+	    { state: state, answer: answer, correctAnswer: correctAnswer }
 	  ];
-	  if (isCorrect) {
+	  if (answer === correctAnswer) {
 	    points.update(p => p + 1);
 	  }
 	}
