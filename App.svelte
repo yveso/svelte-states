@@ -16,6 +16,9 @@
 
   round.subscribe(value => {
     currentRoundNumber = value;
+    if (currentRoundNumber === 0) {
+      states = shuffle(data);
+    }
     if (currentRoundNumber < totalRounds) {
       candidateStatesOfThisRound = states.slice(
         currentRoundNumber * 5,
