@@ -19,13 +19,14 @@
 
 <style>
 	button {
-	  background: #29262b;
-	  color: white;
-	  border: none;
-	  padding: 8px 12px;
-	  border-radius: 2px;
+	  background: darkblue;
+	  color: whitesmoke;
+	  border: 2px whitesmoke solid;
+	  padding: 1em 1.6em;
+	  border-radius: 6px;
 	  display: block;
-	  margin: 10px;
+	  margin: 0.8rem;
+	  font-size: 1.6rem;
 	}
 </style>
 

@@ -9,28 +9,48 @@
 </script>
 
 <style>
+  .screen {
+    background: darkblue;
+    border: 2px whitesmoke solid;
+    color: whitesmoke;
+    padding: 2rem;
+    margin: 1.5rem;
+    border-radius: 10px;
+  }
   .right {
     font-weight: bold;
-    color: green;
+    color: greenyellow;
   }
   .wrong {
     text-decoration: line-through;
-    color: red;
+    color: darkred;
+  }
+  button {
+    margin: 1rem;
+    padding: 1rem;
+    font-size: 1.6rem;
+    background: darkblue;
+    border: 2px whitesmoke solid;
+    color: whitesmoke;
+  }
+  h1 {
+    text-decoration: underline;
   }
 </style>
 
-<h1>Ende</h1>
-<h2>{$points} Punkt{$points !== 1 ? "e" : ""}</h2>
+<div class="screen">
+  <h1>{$points} Punkt{$points !== 1 ? "e" : ""}</h1>
 
-{#each $givenAnswers as {state, answer, correctAnswer}}
-  <p> 
-    <strong>{state}:</strong>
-    {#if answer === correctAnswer}
-      👍 <span class="right">{answer}</span> 
-    {:else}
-      👎 <span class="wrong">{answer}</span> 👉 <span class="right">{correctAnswer}</span>
-    {/if}
-  </p>
-{/each}
+  {#each $givenAnswers as {state, answer, correctAnswer}}
+    <p> 
+      <strong>{state}:</strong>
+      {#if answer === correctAnswer}
+        👍 <span class="right">{answer}</span> 
+      {:else}
+        👎 <span class="wrong">{answer}</span> 👉 <span class="right">{correctAnswer}</span>
+      {/if}
+    </p>
+  {/each}
 
-<button on:click={resetGame}>Nochmal!</button>
+  <button on:click={resetGame}>Nochmal!</button>
+</div>
