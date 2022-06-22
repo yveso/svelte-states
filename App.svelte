@@ -1,34 +1,9 @@
 <script>
-  import { fly } from "svelte/transition";
-  import GameButton from "./GameButton.svelte";
-  import Summary from "./Summary.svelte";
-  import data from "./stateData.js";
-  import shuffle from "./shuffle.js";
-  import { round, points, givenAnswers } from "./stores.js";
+  import Init from "./screens/Init.svelte";
+  import Game from "./screens/Game.svelte";
+  import Summary from "./screens/Summary.svelte";
 
-  let states = shuffle(data);
-  let currentRoundNumber,
-    candidateStatesOfThisRound,
-    currentStateInQuestion,
-    currentCorrectAnswer;
-
-  let totalRounds = 5;
-
-  round.subscribe(value => {
-    currentRoundNumber = value;
-    if (currentRoundNumber === 0) {
-      states = shuffle(data);
-    }
-    if (currentRoundNumber < totalRounds) {
-      candidateStatesOfThisRound = states.slice(
-        currentRoundNumber * 5,
-        currentRoundNumber * 5 + 5
-      );
-      currentStateInQuestion = candidateStatesOfThisRound[0]["name"];
-      currentCorrectAnswer = candidateStatesOfThisRound[0]["capitol"];
-      candidateStatesOfThisRound = shuffle(candidateStatesOfThisRound);
-    }
-  });
+  import { isGameInInitState, round, totalRounds } from "./stores.js";
 </script>
 
 <style>
@@ -48,62 +23,14 @@
     align-items: center;
     justify-content: center;
   }
-  h1 {
-    margin: 0 0 0.5em 0;
-    font-size: 3rem;
-  }
-  h2 {
-    margin: 1em 0 0.6em 0;
-    font-size: 1.2rem;
-  }
-  .game {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-  }
 </style>
 
 <main>
-  {#if currentRoundNumber < totalRounds}
-    <div>
-      👉 Runde: 
-      {#key currentRoundNumber}
-        <span style="display: inline-block" in:fly={{ y: -20 }}>
-          {currentRoundNumber + 1}
-        </span>
-      {/key}
-      /{totalRounds} 👈
-    </div><div>
-      👉 Punkte: 
-      {#key $points}
-        <span style="display: inline-block" in:fly={{ y: -20 }}>
-          {$points}
-        </span>
-      {/key}
-      /{totalRounds} 👈
-    </div>
-    
-    <h2>Was ist die Hauptstadt von</h2>
-
-    {#key currentRoundNumber}
-    <!---->
-      <div class="game" in:fly={{x:-100}}>
-        <h1>{currentStateInQuestion}?</h1>
-
-        {#each candidateStatesOfThisRound as {capitol}}
-          <GameButton 
-            state={currentStateInQuestion}
-            answer={capitol}
-            correctAnswer={currentCorrectAnswer}
-          />
-        {/each}
-      </div>
-    {/key}
+  {#if $isGameInInitState}
+    <Init />
+  {:else if $round < $totalRounds}
+    <Game />
 	{:else}
-    {#key currentRoundNumber}
-      <div in:fly={{x:-100}}>
-        <Summary/>
-      </div>
-    {/key}
+    <Summary/>
   {/if}
 </main>

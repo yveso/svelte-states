@@ -1,5 +1,43 @@
+export const gameTypes = [
+  {
+    name: "capitol",
+    prettyName: "Hauptstädte",
+    question: "Was ist die Hauptstadt von"
+  },
+  {
+    name: "nickname",
+    prettyName: "Spitznamen",
+    question: "Was ist der Spitzname von"
+  },
+  {
+    name: "area_sqkm",
+    prettyName: "Größe in km²",
+    question: "Wie groß (in km²) ist"
+  },
+  {
+    name: "population",
+    prettyName: "Anzahl Einwohner",
+    question: "Wie viele Einwohner hat"
+  },
+  {
+    name: "density_pop_per_sqkm",
+    prettyName: "Bevölkerungsdichte",
+    question: "Wie viele Einwohner pro km² wohnen in"
+  },
+  {
+    name: "join_date",
+    prettyName: "Beitrittsdatum",
+    question: "An welchem Tag war der US Beitritt von"
+  },
+  {
+    name: "gouveneur",
+    prettyName: "Gouveneur",
+    question: "Wer ist Gouveneur von"
+  }
+];
+
 //https://de.wikipedia.org/wiki/Liste_der_Bundesstaaten_der_Vereinigten_Staaten
-export default [
+export const stateData = [
   {
     name: "Alabama",
     abr: "AL",
